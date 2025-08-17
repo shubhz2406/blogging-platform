@@ -44,11 +44,31 @@ export function Circle() {
 
     </div>
 }
+const colors = [
+  "bg-red-500",
+  "bg-blue-500",
+  "bg-green-500",
+  "bg-yellow-500",
+  "bg-purple-500",
+  "bg-pink-500",
+  "bg-indigo-500",
+  "bg-teal-500",
+];
 
-export function Avatar({ name, size = "small" }: { name: string, size?: "small" | "big" }) {
-    return <div className={`relative inline-flex items-center justify-center overflow-hidden bg-gray-600 rounded-full ${size === "small" ? "w-6 h-6" : "w-10 h-10"}`}>
-    <span className={`${size === "small" ? "text-xs" : "text-md"} font-extralight text-white dark:text-gray-300`}>
+export function Avatar({ name, size = "small" }: { name: string; size?: "small" | "big" }) {
+  const bg = colors[name.charCodeAt(0) % colors.length]; // consistent per name
+
+  return (
+    <div
+      className={`relative inline-flex items-center justify-center overflow-hidden rounded-full ${bg} ${
+        size === "small" ? "w-6 h-6" : "w-10 h-10"
+      }`}
+    >
+      <span
+        className={`${size === "small" ? "text-xs" : "text-md"} font-extralight text-white`}
+      >
         {name[0]}
-    </span>
-</div>
+      </span>
+    </div>
+  );
 }
